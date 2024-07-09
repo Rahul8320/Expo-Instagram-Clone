@@ -6,8 +6,9 @@ export default function FeedScreen() {
   return (
     <FlatList
       data={posts}
+      className="bg-slate-200"
       renderItem={({ item }) => <PostCard post={item} />}
-      contentContainerStyle={{ gap: 1, backgroundColor: "#e2e8f0" }}
+      contentContainerStyle={{ gap: 2 }}
       showsVerticalScrollIndicator={false}
     />
   );

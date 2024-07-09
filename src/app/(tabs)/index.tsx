@@ -1,11 +1,14 @@
-import { View, Text } from "react-native";
+import { FlatList } from "react-native";
+import posts from "../../../assets/data/posts.json";
+import PostCard from "../../components/post/PostCard";
 
 export default function FeedScreen() {
   return (
-    <View className="bg-slate-300">
-      <Text className="text-5xl font-bold text-indigo-600 text-center p-3 m-10">
-        Feed Screen
-      </Text>
-    </View>
+    <FlatList
+      data={posts}
+      renderItem={({ item }) => <PostCard post={item} />}
+      contentContainerStyle={{ gap: 1, backgroundColor: "#e2e8f0" }}
+      showsVerticalScrollIndicator={false}
+    />
   );
 }

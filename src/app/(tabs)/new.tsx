@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import IGButton from "../../components/custom/IGButton";
 
 export default function CreateNewScreen() {
   const [caption, setCaption] = useState<string>("");
@@ -56,9 +57,7 @@ export default function CreateNewScreen() {
 
       {/* submit button */}
       <View className="mt-auto mb-5 w-[90%]">
-        <TouchableOpacity className="bg-blue-500 w-full p-3 rounded-lg items-center">
-          <Text className="text-white font-semibold text-lg">Share</Text>
-        </TouchableOpacity>
+        <IGButton title={"Share"} />
       </View>
     </View>
   );

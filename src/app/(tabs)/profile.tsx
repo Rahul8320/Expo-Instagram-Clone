@@ -1,6 +1,7 @@
 import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
+import IGButton from "../../components/custom/IGButton";
 
 export default function ProfileScreen() {
   const [image, setImage] = useState<string | null>(null);
@@ -49,14 +50,8 @@ export default function ProfileScreen() {
 
       {/* button */}
       <View className="mt-auto mb-5 mx-3 gap-3">
-        <TouchableOpacity className="bg-blue-500 w-full p-3 rounded-lg items-center">
-          <Text className="text-white font-semibold text-lg">
-            Update Profile
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="bg-blue-500 w-full p-3 rounded-lg items-center">
-          <Text className="text-white font-semibold text-lg">Logout</Text>
-        </TouchableOpacity>
+        <IGButton title="Update Profile" />
+        <IGButton title="Logout" />
       </View>
     </View>
   );

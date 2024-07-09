@@ -1,27 +1,48 @@
-import { useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  Alert,
-  TextInput,
-} from "react-native";
+import { useEffect, useState } from "react";
+import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 
 export default function CreateNewScreen() {
   const [caption, setCaption] = useState<string>("");
+  const [image, setImage] = useState<string | null>(null);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
+  useEffect(() => {
+    if (!image) {
+      pickImage();
+    }
+  }, [image]);
 
   return (
     <View className="p-2 items-center flex-1">
       {/* image picker */}
-      <Image
-        source={{
-          uri: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
-        }}
-        className="w-64 aspect-[3/4] rounded-lg shadow-lg my-7"
-      />
+      {image ? (
+        <Image
+          source={{ uri: image }}
+          className="w-64 aspect-[3/4] rounded-lg shadow-lg my-7"
+        />
+      ) : (
+        <View className="w-64 aspect-[3/4] rounded-lg shadow-lg my-7 bg-slate-400 items-center justify-center px-10">
+          <Text className="text-gray-100 font-semibold text-xl text-wrap">
+            Please select an image to post
+          </Text>
+        </View>
+      )}
 
-      <TouchableOpacity onPress={() => Alert.alert("Caption", caption)}>
+      <TouchableOpacity onPress={pickImage}>
         <Text className="text-blue-500 font-semibold text-lg">Change</Text>
       </TouchableOpacity>
 

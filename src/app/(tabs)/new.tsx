@@ -32,10 +32,10 @@ export default function CreateNewScreen() {
       {image ? (
         <Image
           source={{ uri: image }}
-          className="w-64 aspect-[3/4] rounded-lg shadow-lg my-7"
+          className="w-64 aspect-[3/4] rounded-lg shadow-lg my-5"
         />
       ) : (
-        <View className="w-64 aspect-[3/4] rounded-lg shadow-lg my-7 bg-slate-400 items-center justify-center px-10">
+        <View className="w-64 aspect-[3/4] rounded-lg shadow-lg my-5 bg-slate-400 items-center justify-center px-10">
           <Text className="text-gray-100 font-semibold text-xl text-wrap">
             Please select an image to post
           </Text>
@@ -53,10 +53,13 @@ export default function CreateNewScreen() {
         placeholder="What's on your mind"
         className="w-[90%] p-3"
       />
+
       {/* submit button */}
-      <TouchableOpacity className="bg-blue-500 w-[90%] p-3 rounded-lg items-center mt-auto mb-5">
-        <Text className="text-white font-semibold text-lg">Share</Text>
-      </TouchableOpacity>
+      <View className="mt-auto mb-5 w-[90%]">
+        <TouchableOpacity className="bg-blue-500 w-full p-3 rounded-lg items-center">
+          <Text className="text-white font-semibold text-lg">Share</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

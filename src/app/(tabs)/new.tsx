@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import IGButton from "../../components/custom/IGButton";
+import useInput from "../../hooks/useInput";
 
 export default function CreateNewScreen() {
-  const [caption, setCaption] = useState<string>("");
+  const [captionProps] = useInput("");
   const [image, setImage] = useState<string | null>(null);
 
   const pickImage = async () => {
@@ -49,8 +50,7 @@ export default function CreateNewScreen() {
 
       {/* text input for caption */}
       <TextInput
-        value={caption}
-        onChangeText={(newValue) => setCaption(newValue)}
+        {...captionProps}
         placeholder="What's on your mind"
         className="w-[90%] p-3"
       />

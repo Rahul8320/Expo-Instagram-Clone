@@ -1,11 +1,19 @@
-import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
 import IGButton from "../../components/custom/IGButton";
+import useInput from "../../hooks/useInput";
 
 export default function ProfileScreen() {
   const [image, setImage] = useState<string | null>(null);
-  const [username, setUsername] = useState<string>("");
+  const [usernameProps] = useInput("");
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -41,8 +49,7 @@ export default function ProfileScreen() {
       <View className="mx-3 my-2">
         <Text className="mb-3 text-gray-500 font-semibold">Username</Text>
         <TextInput
-          value={username}
-          onChangeText={(newValue) => setUsername(newValue)}
+          {...usernameProps}
           placeholder="Please enter your username"
           className="p-3 border-2 border-gray-300 rounded-md px-3 text-gray-700 font-medium"
         />
@@ -51,7 +58,7 @@ export default function ProfileScreen() {
       {/* button */}
       <View className="mt-auto mb-5 mx-3 gap-3">
         <IGButton title="Update Profile" />
-        <IGButton title="Logout" />
+        <IGButton title="Sign Out" />
       </View>
     </View>
   );
